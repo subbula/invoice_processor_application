@@ -23,31 +23,31 @@ export class Processedinvoices extends Entity {
 
   @property({
     type: 'date',
-    required: true,
+    required: false,
   })
   invoiceDate: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   invoicenumber: string;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   invoiceAmount: string;
 
   @property({
     type: 'boolean',
-    required: true,
+    required: false,
   })
   isValidInvoice: boolean;
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   errorMsg: string;
 
