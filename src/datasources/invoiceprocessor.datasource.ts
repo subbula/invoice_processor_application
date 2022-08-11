@@ -4,8 +4,8 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'invoiceprocessor',
   connector: 'postgresql',
-  url: 'postgres://userIEY:miKOMYqf65e1Rjrn@localhost/sampledb',
-  // url: 'postgres://userIEY:miKOMYqf65e1Rjrn@postgresql.dw-cp4ba.svc.cluster.local/sampledb',
+  // url: 'postgres://userIEY:miKOMYqf65e1Rjrn@localhost/sampledb',
+  url: 'postgres://userIEY:miKOMYqf65e1Rjrn@postgresql.dw-cp4ba.svc.cluster.local/sampledb',
   host: 'localhost',
   port: 5432,
   user: 'userIEY',
