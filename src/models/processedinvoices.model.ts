@@ -69,6 +69,12 @@ export class Processedinvoices extends Entity {
   })
   updatedTime: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  userid: string;
+
 
   constructor(data?: Partial<Processedinvoices>) {
     super(data);
