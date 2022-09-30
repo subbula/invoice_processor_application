@@ -75,6 +75,12 @@ export class Processedinvoices extends Entity {
   })
   userid: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  fileurl: string;
+
 
   constructor(data?: Partial<Processedinvoices>) {
     super(data);
