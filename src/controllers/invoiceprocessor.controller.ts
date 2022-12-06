@@ -4,19 +4,14 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, patch, post, put, requestBody,
+  response
 } from '@loopback/rest';
+import moment from 'moment';
 import {Processedinvoices} from '../models';
 import {ProcessedinvoicesRepository} from '../repositories';
 
@@ -146,5 +141,34 @@ export class InvoiceprocessorController {
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
     await this.processedinvoicesRepository.deleteById(id);
+  }
+  @get('/filteredInvoices')
+  @response(200, {
+    description: 'Filtered Invoices'
+  })
+  async getInvoices(
+    @param.query.string('fromDate') fromDate: string,
+    @param.query.string('toDate') toDate: string,
+    @param.query.string('userid') userid: string
+  ): Promise<any> {
+    try {
+      let startDate = fromDate;
+      let endDate = toDate;
+      startDate = moment(new Date(fromDate).toUTCString()).format("YYYY-MM-DD");
+      endDate = (moment(new Date(toDate).toUTCString()).format("YYYY-MM-DD"));
+      // let filters = {
+      //   "userid": userid,
+      //   "invoiceDate": {between: [startDate, endDate]}
+      // }
+      return this.processedinvoicesRepository.find({
+        where: {
+          "userid": userid,
+          "invoiceDate": {between: [startDate, endDate]}
+        }
+      });
+    } catch (e: any) {
+      console.log(e);
+      return "error";
+    }
   }
 }
