@@ -144,7 +144,15 @@ export class InvoiceprocessorController {
   }
   @get('/filteredInvoices')
   @response(200, {
-    description: 'Filtered Invoices'
+    description: 'Filtered Invoices',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'array',
+          items: getModelSchemaRef(Processedinvoices, {includeRelations: true}),
+        },
+      },
+    },
   })
   async getInvoices(
     @param.query.string('fromDate') fromDate: string,
@@ -152,6 +160,7 @@ export class InvoiceprocessorController {
     @param.query.string('userid') userid: string
   ): Promise<any> {
     try {
+
       let startDate = fromDate;
       let endDate = toDate;
       startDate = moment(new Date(fromDate).toUTCString()).format("YYYY-MM-DD");
